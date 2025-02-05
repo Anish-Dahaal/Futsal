@@ -1,0 +1,393 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-left: 50px; /* Adjust this value to move the logo more to the right */
+}
+
+
+.logo img {
+    height: 60px; /* Adjust as needed */
+    width: auto; /* Ensures aspect ratio is maintained */
+    max-width: 200px; /* Prevents it from being too large */
+    margin-right: 10px; /* Reduce spacing if needed */
+}
+
+.logo span {
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap; /* Ensures the name stays in one line */
+    color: #fff;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+
+nav a:hover {
+    color: #ff6347; /* Tomato color for hover effect */
+}
+
+/* Slider Styles */
+.slider {
+    width: 100%;
+    height: 750px; /* Adjust height as needed */
+    overflow: hidden;
+    position: relative;
+}
+
+.slider img {
+    width: 100%;
+    height: 100%; /* Ensures the image fills the slider */
+    object-fit: cover; /* Ensures the image scales properly without distortion */
+    display: block;
+}
+
+/* Transparent Overlay */
+.slider::before {
+    content: "";
+    position: absolute;
+    bottom: 0%; /* Adjust this value to change position */
+    left: 0;
+    width: 100%;
+    height: 100%; /* Adjust height as needed */
+    background: rgba(0, 0, 0, 0.5); /* Adjust transparency */
+}
+
+
+/* Futsal Photos Section */
+.futsal-photos {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    padding: 0 20px;
+}
+
+.futsal-photos img {
+    width: 30%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.futsal-photos img:hover {
+    transform: scale(1.05); /* Zoom effect on hover */
+}
+
+/* Footer Styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1; /* Pushes the footer to the bottom */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    margin-top: 20px;
+}
+
+/* Login and Register Form Styles */
+form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #ff6347; /* Tomato color for hover effect */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav {
+        margin-top: 10px;
+    }
+
+    .futsal-photos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100vw; /* Full viewport width */
+        max-width: 100%; /* Use the entire available space */
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .photo-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%; /* Full width */
+        max-width: 100%; /* Ensure it takes up the entire available space */
+        margin-bottom: 40px;
+    }
+    
+    .futsal-photos img {
+        width: 100%; /* Almost full screen width */
+        height: 100%; /* Keeps aspect ratio */
+        max-width: 1500px; /* Prevents excessive stretching on large screens */
+        border-radius: 10px;
+    }
+    
+    .photo-caption {
+        margin-top: 15px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #191818;
+        text-align: center;
+    }
+}
+
+
+/* Maps Page */
+.maps-container {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Login/Register Page */
+.auth-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.auth-container .form-group {
+    margin-bottom: 15px;
+}
+
+.auth-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.auth-container input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.auth-container button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.auth-container button:hover {
+    background-color: #555;
+}
+
+/* Futsals Page */
+.futsals-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.futsal-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.futsal-card {
+    width: 30%;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+.futsal-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.futsal-card button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.futsal-card button:hover {
+    background-color: #555;
+}
+
+/* Booking Page Styles */
+.booking-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.booking-container h1 {
+    text-align: center;
+    color: #333;
+}
+
+.booking-form {
+    margin-bottom: 40px;
+}
+
+.booking-form h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-book {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-book:hover {
+    background-color: #ff6347; /* Tomato color for hover effect */
+}
+
+.booking-list h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.booking-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.booking-list th,
+.booking-list td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.booking-list th {
+    background-color: #333;
+    color: #fff;
+}
+
+.booking-list tr:hover {
+    background-color: #f5f5f5;
+}
+
+.btn-cancel {
+    padding: 5px 10px;
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #ff4500; /* Darker red for hover effect */
+}
