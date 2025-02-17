@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FutsalController extends Controller
 {
@@ -18,20 +19,11 @@ class FutsalController extends Controller
 
     public function bookings()
      {
+
+    //    $logged_user = Auth::guard('frontUser')->user()->name;
+    //    dd($logged_user);
         return view('bookings');
      }
  
-     public function store(Request $request)
-     {
-         // Validate the form data
-         $request->validate([
-             'futsal' => 'required|string',
-             'date' => 'required|date',
-             'time' => 'required',
-             'duration' => 'required|numeric|min:1|max:5',
-         ]);
- 
-         // For now, just return a success message
-         return redirect()->route('bookings')->with('success', 'Booking successful!');
-     }
+    
 }

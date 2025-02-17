@@ -3,6 +3,9 @@
 @section('content')
 <div class="auth-container">
     <h1>Register</h1>
+    @if(session('success'))
+        <p style="color: green;">{{ session('success') }}</p>
+    @endif
     <form action="{{ route('user.register') }}" method="POST">
         @csrf
         <div class="form-group">

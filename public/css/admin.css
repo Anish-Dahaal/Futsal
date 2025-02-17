@@ -1,0 +1,73 @@
+/* General Admin Styling */
+.admin-body {
+    background-color: #f8f9fa;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* Navbar Styling */
+.admin-navbar {
+    background-color: #343a40 !important;
+}
+
+.admin-navbar .nav-link {
+    color: #ffffff !important;
+    transition: color 0.3s ease-in-out;
+}
+
+.admin-navbar .nav-link:hover {
+    color: #17a2b8 !important;
+}
+
+/* User Dropdown */
+.admin-user {
+    font-weight: bold;
+}
+
+.admin-dropdown {
+    background-color: #343a40;
+}
+
+.admin-dropdown .dropdown-item {
+    color: #ffffff !important;
+}
+
+.admin-dropdown .dropdown-item:hover {
+    background-color: #17a2b8 !important;
+}
+
+/* Main Content */
+.admin-main {
+    padding: 20px;
+}
+
+.admin-main h1 {
+    color: #343a40;
+    font-weight: bold;
+}
+
+/* Table Styling */
+.table {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #17a2b8 !important;
+    border-color: #138496 !important;
+}
+
+.btn-primary:hover {
+    background-color: #138496 !important;
+    border-color: #117a8b !important;
+}

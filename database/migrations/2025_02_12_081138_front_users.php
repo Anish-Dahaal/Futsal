@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('booking', function (Blueprint $table) {
-            $table->string('futsal_name');
-            $table->date('booking_date');
-            $table->time('booking_time');
-            $table->Integer('duration');
-            $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
+        Schema::create('front_users', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('booking');
+        //
     }
 };

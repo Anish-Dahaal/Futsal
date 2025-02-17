@@ -17,9 +17,13 @@
         <nav>
             <a href="{{ route('gethome') }}">Home</a>
             <a href="{{ route('futsals') }}">Futsals</a>
-            <a href="{{ route('bookings') }}">Bookings</a>
+            <a href="{{ route('bookings.index') }}">Bookings</a>
             <a href="{{ route('maps') }}">Maps</a>
-            <a href="{{ route('user.login') }}">Login/Register</a>
+            @if (Auth::guard('frontUser')->check())
+                <a href="{{ route('user.logout') }}">Logout</a>
+            @else
+                <a href="{{ route('user.login') }}">Login/Register</a>
+            @endif
         </nav>
     </header>
 
