@@ -20,9 +20,8 @@ Route::middleware(['frontUser'])->group(function () {
     Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
     Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
     Route::delete('/bookings/{id}', [BookingController::class, 'cancel'])->name('bookings.cancel');
-    Route::get('/maps', [App\Http\Controllers\MapController::class, 'maps'])->name('maps');
+    Route::get('/maps', [MapController::class, 'maps'])->name('maps');
 });
-
 
 
 Route::controller(AuthController::class)->group(function () {
@@ -46,7 +45,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::middleware(['auth'])->group(function () {
 // Admin Booking Routes
     Route::get('/tables', [AdminBookingController::class, 'tables'])->name('tables');
-    Route::post('/layouts/partials/tables/{id}/update-status', [AdminBookingController::class, 'updateStatus'])->name('layouts.partials.tables.update-status');
+    Route::post('/bookings/{id}/update-status', [AdminBookingController::class, 'updateStatus'])->name('layouts.partials.tables.update-status');
     Route::delete('/bookings/{id}', [AdminBookingController::class, 'cancel'])->name('bookings.cancel');
 
 

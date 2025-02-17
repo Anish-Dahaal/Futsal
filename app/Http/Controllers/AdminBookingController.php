@@ -9,7 +9,7 @@ class AdminBookingController extends Controller
 {
     // Display all bookings for admin
     public function tables(){
-        $bookings = Booking::with('user')->get();
+        $bookings = Booking::with('user')->latest()->get();
         // $bookings = json_decode(json_encode($bookings), true);
 
         // echo "<pre>"; print_r($bookings); echo "</pre>";
@@ -28,6 +28,14 @@ class AdminBookingController extends Controller
         $booking->status = $request->status;
         $booking->save();
 
-        return redirect()->route('layouts.partials.tables')->with('success', 'Booking status updated successfully.');
+        return redirect()->back()->with('success', 'Booking status updated successfully.');
+    }
+    public function cancel($id)
+    {
+        $booking = Booking::findOrFail($id);
+        $booking->status = 'Rejected';
+        $booking->save();
+
+        return redirect()->back()->with('success', 'Booking rejected successfully.');
     }
 }

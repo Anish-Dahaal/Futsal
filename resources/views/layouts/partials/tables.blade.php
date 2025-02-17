@@ -429,6 +429,27 @@
                                                     </span>
                                                 </td>
                                                 <td>
+                                                    @if ($booking->status == 'pending')
+                                                        <form
+                                                            action="{{ route('layouts.partials.tables.update-status', $booking->id) }}"
+                                                            method="POST" style="display:inline;">
+                                                            @csrf
+                                                            <button type="submit" name="status" value="Booked"
+                                                                class="btn btn-success btn-sm">Accept</button>
+                                                            <button type="submit" name="status" value="Rejected"
+                                                                class="btn btn-danger btn-sm">Reject</button>
+                                                        </form>
+                                                    @else
+                                                        <span
+                                                            class="badge badge-sm 
+                                                            @if ($booking->status == 'Booked') bg-gradient-success
+                                                            @elseif($booking->status == 'Rejected') bg-gradient-danger @endif">
+                                                            {{ $booking->status }}
+                                                        </span>
+                                                    @endif
+                                                </td>
+
+                                                {{-- <td>
                                                     @if ($booking->status == 'pending' || $booking->status == 'booked')
                                                         <form action="{{ route('bookings.cancel', $booking->id) }}"
                                                             method="delete">
@@ -437,7 +458,7 @@
                                                                 style="color: black !important;">Cancel</button>
                                                         </form>
                                                     @endif
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
