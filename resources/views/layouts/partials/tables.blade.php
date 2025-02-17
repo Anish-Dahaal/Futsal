@@ -421,7 +421,7 @@
                                                 </td>
                                                 <td>
                                                     <span
-                                                        class="badge badge-sm 
+                                                        class="badge badge-sm text-dark
                                                     @if ($booking->status == 'pending') bg-gradient-secondary
                                                     @elseif($booking->status == 'Booked') bg-gradient-success
                                                     @elseif($booking->status == 'Rejected') bg-gradient-danger @endif">
@@ -441,7 +441,7 @@
                                                         </form>
                                                     @else
                                                         <span
-                                                            class="badge badge-sm 
+                                                            class="badge badge-sm text-dark
                                                             @if ($booking->status == 'Booked') bg-gradient-success
                                                             @elseif($booking->status == 'Rejected') bg-gradient-danger @endif">
                                                             {{ $booking->status }}

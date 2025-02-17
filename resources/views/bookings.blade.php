@@ -65,7 +65,7 @@
                             <td>{{ $booking->booking_date }}</td>
                             <td>{{ $booking->booking_time }}</td>
                             <td>{{ $booking->duration }} hours</td>
-                            <td>{{ $booking->status }}</td>
+                            {{-- <td>{{ $booking->status }}</td> --}}
                             <td>
                                 <span
                                     class="badge {{ $booking->status == 'pending'
