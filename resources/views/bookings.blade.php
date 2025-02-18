@@ -12,34 +12,29 @@
                 @csrf
                 <div class="form-group">
                     <label for="futsal_name" style="font-size: 20px;">Futsal Name:</label>
-                    <select id="futsal_name" name="futsal_name" required>
+                    <select id="futsal_name" name="futsal_id" required>
                         <option value="">Select a Futsal</option>
-                        <option value="pokhara_futsal_arena">Pokhara Futsal Arena</option>
-                        <option value="abc_futsal">ABC Futsal Pvt Ltd</option>
-                        <option value="forest_sports_arena">Forest Sports Arena</option>
-                        <option value="sports_castle_pokhara">Sports Castle Pokhara</option>
-                        <option value="sabin_memorial_fc">Sabin Memorial FC</option>
-                        <option value="ammarsingh_sports_center">Ammarsingh Sports Center Pvt. Ltd.</option>
-                        <option value="barahi_futsal_arena">Barahi Futsal Arena</option>
-                        <option value="mustang_chowk_futsal">Mustang Chowk Futsal</option>
-                        <option value="hemja_sports_center">Hemja Sports Center Pvt. Ltd.</option>
-                        <option value="ranipauwa_sports_center">Ranipauwa Sports Center</option>
-                        <option value="khelkunj_arena">Khelkunj Arena Swimming Pool and Futsal</option>
+                        @foreach ($futsals as $futsal)
+                            <option value="{{ $futsal->id }}">{{ $futsal->futsal_name }}</option>
+                        @endforeach
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="booking_date">Booking Date:</label>
-                    <input type="date" id="booking_date" name="booking_date" required>
+                    <input type="date" id="booking_date" name="booking_date" required min="<?= date('Y-m-d') ?>">
                 </div>
+
                 <div class="form-group">
                     <label for="booking_time">Booking Time:</label>
                     <input type="time" id="booking_time" name="booking_time" required>
                 </div>
+
                 <div class="form-group">
                     <label for="duration">Duration (hours):</label>
                     <input type="number" id="duration" name="duration" min="1" max="5" required>
                 </div>
+
                 <button type="submit" class="btn-book">Book Now</button>
             </form>
         </div>

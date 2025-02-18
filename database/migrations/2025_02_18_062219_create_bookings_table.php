@@ -4,9 +4,12 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBookingsTable extends Migration
+return new class extends Migration
 {
-    public function up()
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
@@ -16,14 +19,15 @@ class CreateBookingsTable extends Migration
             $table->integer('duration');
             $table->unsignedBigInteger('user_id'); // To store the logged-in user
             $table->string('status')->default('Pending'); // Status: Pending, Booked, Rejected
+            $table->foreignId('futsal_id')->constrained()->onDelete('cascade');
             $table->timestamps();
-    
-            // Foreign key constraint
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::dropIfExists('bookings');
     }

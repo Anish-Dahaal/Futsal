@@ -18,6 +18,9 @@ Route::get('/futsals', [App\Http\Controllers\FutsalController::class, 'futsals']
 
 Route::middleware(['frontUser'])->group(function () {
     Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
+   
+    // Route::get('/bookings', [BookingController::class, 'showBookingForm'])->name('bookings.futsal');
+   
     Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
     Route::delete('/bookings/{id}', [BookingController::class, 'cancel'])->name('bookings.cancel');
     Route::get('/maps', [MapController::class, 'maps'])->name('maps');
@@ -48,12 +51,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/bookings/{id}/update-status', [AdminBookingController::class, 'updateStatus'])->name('layouts.partials.tables.update-status');
     Route::delete('/bookings/{id}', [AdminBookingController::class, 'cancel'])->name('bookings.cancel');
 
+    
+    Route::get('/add/futsal',[App\Http\Controllers\HomeController::class, 'getAddFutsal'])->name('getAddFutsal');
+    Route::post('/add/futsal',[App\Http\Controllers\HomeController::class, 'postAddFutsal'])->name('postAddFutsal');
 
     Route::get('/dashboard' ,[DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/billing' ,[DashboardController::class, 'billing'])->name('billing');
     Route::get('/profile' ,[DashboardController::class, 'profile'])->name('profile');
     
 });
-
-// Route::get('/add/futsal',[App\Http\Controllers\HomeController::class, 'getAddFutsal'])->name('getAddFutsal');
-// Route::post('/add/futsal',[App\Http\Controllers\HomeController::class, 'postAddFutsal'])->name('postAddFutsal');

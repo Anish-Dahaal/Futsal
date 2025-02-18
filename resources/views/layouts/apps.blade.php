@@ -36,5 +36,30 @@
         <p>&copy; {{ date('Y') }} Futsal Management System</p>
     </footer>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const dateInput = document.getElementById("booking_date");
+        const timeInput = document.getElementById("booking_time");
+
+        // Set the minimum date to today
+        dateInput.setAttribute("min", new Date().toISOString().split("T")[0]);
+
+        dateInput.addEventListener("change", function() {
+            let today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+            let now = new Date();
+            let currentHour = now.getHours();
+            let currentMinutes = now.getMinutes();
+            let minTime = currentHour.toString().padStart(2, "0") + ":" + currentMinutes.toString()
+                .padStart(2, "0");
+
+            // If the selected date is today, restrict past times
+            if (dateInput.value === today) {
+                timeInput.min = minTime;
+            } else {
+                timeInput.removeAttribute("min");
+            }
+        });
+    });
+</script>
 
 </html>

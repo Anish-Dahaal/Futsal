@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\Futsal;
 use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
@@ -11,27 +12,43 @@ class BookingController extends Controller
     // Store a new booking
     public function index()
     {
-        $bookings = Booking::where('user_id', Auth::id())->latest()->get(); // Fetch bookings for the logged-in user
-        return view('bookings', compact('bookings'));
+      
+        $futsals = Futsal::all();
+        // $bookings = Booking::with('futsal')->where('user_id', auth()->id())->get();
+        $bookings = Booking::where('user_id', Auth::guard('frontUser')->id())->latest()->get(); // Fetch bookings for the logged-in user
+        return view('bookings', compact('bookings', 'futsals'));
     }
+
 
     public function store(Request $request)
     {
         $request->validate([
-            'futsal_name' => 'required|string', 
+            'futsal_id' => 'required', 
             'booking_date' => 'required|date',
             'booking_time' => 'required',
             'duration' => 'required|integer|min:1|max:5',
         ]);
 
+
+
+        // $data = $request->all();
+
+        // dd($data);
+
+        $futsal_name = Futsal::where('futsal_id', $request->futsal_id)->select('futsal_name')->first();
+        
+       // dd($futsal_name->futsal_name);
+
         $booking = new Booking();
-        $booking->futsal_name = $request->futsal_name;
+        $booking->futsal_name = $futsal_name->futsal_name;
         $booking->booking_date = $request->booking_date;
         $booking->booking_time = $request->booking_time;
         $booking->duration = $request->duration;
-        $booking->user_id = Auth::id(); // Get the logged-in user's ID
+        $booking->futsal_id = $request->futsal_id;
+        $booking->user_id = Auth::guard('frontUser')->id(); // Get the logged-in user's ID
         $booking->status = 'pending'; // Default status
         $booking->save();
+
 
         return redirect()->route('bookings.index')->with('success', 'Booking created successfully.');
     }
@@ -39,7 +56,7 @@ class BookingController extends Controller
     // Cancel a booking
     public function cancel($id)
     {
-        $booking = Booking::where('user_id', Auth::id())
+        $booking = Booking::where('user_id', Auth::guard('frontUser')->id())
             ->findOrFail($id);
             
         if ($booking->status == 'Booked') {

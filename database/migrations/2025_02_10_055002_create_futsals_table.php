@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('photo');
             $table->string('location');
             $table->integer('price_per_hour');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

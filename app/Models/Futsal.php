@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Futsal extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'futsal_name',
+        'location',
+        'photo',
+        'futsal_id',
+        'price_per_hour',
+        'user_id'
+    ];
 }
