@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Futsal;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -31,42 +32,6 @@ class HomeController extends Controller
     public function getAddFutsal(){
         return view('admin.futsal.add');
     }
-
-    // public function postAddFutsal(Request $request){
-
-    //     $request->validate([
-    //         'futsal_name' => 'required|string|max:255',
-    //         'futsal_id' => 'required|integer|unique:futsals,futsal_id',
-    //         'location' => 'required|string',
-    //         'price_per_hour' => 'required|numeric|min:0',
-    //         'status' => 'required|in:open,closed',
-    //         'photo' => 'required|image|mimes:jpg,png,jpeg|max:2048'
-    //     ]);
-        
-    //     //photo lai variable maa store gareko
-    //     $photo = $request->file('photo');
-       
-    //         //photo ko extension name taaneko
-    //         $extension = $photo->getClientOriginalExtension();
-            
-    //         //unique time ra photo extension milaayera photo ko name banaako
-    //         $photoname = time(). '.' . $extension;
-            
-    //         //photo lai tei name maa server maaa move gareko
-    //         $photo->move('uploads/futsals/', $photoname);
-            
-    //     $futsal = New Futsal;
-    //     $futsal->futsal_name = $request->input('futsal_name');
-    //     $futsal->futsal_id = $request->futsal_id;
-    //     $futsal->location = $request->input('location');
-    //     $futsal->price_per_hour = $request->price_per_hour;
-    //     $futsal->status = $request->input('status');
-        
-    //         $futsal->photo = $photoname;
-        
-    //     $futsal->save();
-    //     return redirect()->back()->with('status', 'Futsal added successfully');
-    // }
 
     public function postAddFutsal(Request $request)
     {
@@ -104,4 +69,81 @@ class HomeController extends Controller
             ->withErrors(['error' => 'Failed to add futsal. Please try again.']);
     }
     }
+
+    public function edit($id)
+{
+    // Fetch the futsal to edit
+    $futsal = Futsal::findOrFail($id);
+
+    // Ensure the authenticated user owns the futsal
+    // if ($futsal->user_id !== auth()->id()) {
+    //     return redirect()->back()->withErrors(['error' => 'Unauthorized action.']);
+    // }
+
+    return view('layouts.partials.edit', compact('futsal'));
+}
+
+public function getUpdateFutsal(Request $request, $id)
+{
+    // Validate the form data
+    $request->validate([
+        'futsal_name' => 'required|string|max:255',
+        'location' => 'required|string',
+        'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'price_per_hour' => 'required|numeric|min:0',
+    ]);
+    
+
+    // Fetch the futsal to update
+    $futsal = Futsal::findOrFail($id);
+
+    // // Ensure the authenticated user owns the futsal
+    // if ($futsal->user_id !== auth()->id()) {
+    //     return redirect()->back()->withErrors(['error' => 'Unauthorized action.']);
+    // }
+
+    // Handle file upload
+    if ($request->hasFile('photo')) {
+        // Delete the old photo if it exists
+        if ($futsal->photo && Storage::disk('public')->exists($futsal->photo)) {
+            Storage::disk('public')->delete($futsal->photo);
+        }
+        $photoPath = $request->file('photo')->store('futsal_photos', 'public');
+    } else {
+        $photoPath = $futsal->photo;
+    }
+
+    // Update the futsal record
+    $futsal->update([
+        'futsal_name' => $request->futsal_name,
+        'location' => $request->location,
+        'photo' => $photoPath,
+        'price_per_hour' => $request->price_per_hour,
+    ]);
+
+    return redirect()->route('billing')->with('status', 'Futsal updated successfully!');
+}
+
+public function getDeleteFutsal($id)
+{
+    // Fetch the futsal to delete
+    $futsal = Futsal::findOrFail($id);
+
+    // Ensure the authenticated user owns the futsal
+    // if ($futsal->user_id !== auth()->id()) {
+    //     return redirect()->back()->withErrors(['error' => 'Unauthorized action.']);
+    // }
+
+    // Delete the photo if it exists
+    // if ($futsal->photo && Storage::disk('public')->exists($futsal->photo)) {
+    //     Storage::disk('public/futsal_photos')->delete($futsal->photo);
+    // }
+
+    // Delete the futsal record
+    $futsal->delete();
+
+    return redirect()->route('billing')->with('status', 'Futsal deleted successfully!');
+}
+
+
 }

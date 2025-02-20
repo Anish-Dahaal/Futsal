@@ -54,6 +54,16 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/add/futsal',[App\Http\Controllers\HomeController::class, 'getAddFutsal'])->name('getAddFutsal');
     Route::post('/add/futsal',[App\Http\Controllers\HomeController::class, 'postAddFutsal'])->name('postAddFutsal');
+    
+    // Edit Futsal
+    Route::get('/edit/futsal/{id?}',[App\Http\Controllers\DashboardController::class, 'getEditFutsal'])->name('getEdit');
+    Route::get('/edit/futsal/{id}', [App\Http\Controllers\HomeController::class, 'getEditFutsal'])->name('getEditFutsal');
+
+    // Update Futsal
+    Route::put('update//futsal/{id}', [App\Http\Controllers\HomeController::class, 'getUpdateFutsal'])->name('getUpdateFutsal');
+
+    // Delete Futsal
+    Route::delete('delete/futsal/{id}', [App\Http\Controllers\HomeController::class, 'getDeleteFutsal'])->name('getDeleteFutsal');
 
     Route::get('/dashboard' ,[DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/billing' ,[DashboardController::class, 'billing'])->name('billing');

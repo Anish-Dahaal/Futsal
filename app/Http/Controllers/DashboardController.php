@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Futsal; 
 
 class DashboardController extends Controller
 {
@@ -11,12 +12,19 @@ class DashboardController extends Controller
     }
 
     public function billing(){
-        return view('layouts.partials.billing');
+        $futsals = Futsal::all();
+        return view('layouts.partials.billing', compact('futsals'));
+    
     }
 
     public function profile(){
         return view('layouts.partials.profile');
     }
 
+    public function getEditFutsal($id){
+        $futsal = Futsal::find($id);
+
+        return view('layouts.partials.edit', compact('futsal'));
+    }    
   
 }
