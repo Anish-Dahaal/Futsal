@@ -52,8 +52,10 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/bookings/{id}', [AdminBookingController::class, 'cancel'])->name('bookings.cancel');
 
     
-    Route::get('/add/futsal',[App\Http\Controllers\HomeController::class, 'getAddFutsal'])->name('getAddFutsal');
+    // Route::get('/add/futsal',[App\Http\Controllers\HomeController::class, 'getAddFutsal'])->name('getAddFutsal');
+    Route::get('/billing' ,[DashboardController::class, 'billing'])->name('billing');
     Route::post('/add/futsal',[App\Http\Controllers\HomeController::class, 'postAddFutsal'])->name('postAddFutsal');
+    Route::get('/show/futsal',[App\Http\Controllers\DashboardController::class, 'getShowFutsal'])->name('getShowFutsal');
     
     // Edit Futsal
     Route::get('/edit/futsal/{id?}',[App\Http\Controllers\DashboardController::class, 'getEditFutsal'])->name('getEdit');
@@ -66,7 +68,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('delete/futsal/{id}', [App\Http\Controllers\HomeController::class, 'getDeleteFutsal'])->name('getDeleteFutsal');
 
     Route::get('/dashboard' ,[DashboardController::class, 'dashboard'])->name('dashboard');
-    Route::get('/billing' ,[DashboardController::class, 'billing'])->name('billing');
     Route::get('/profile' ,[DashboardController::class, 'profile'])->name('profile');
     
 });

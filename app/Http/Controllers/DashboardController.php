@@ -26,5 +26,10 @@ class DashboardController extends Controller
 
         return view('layouts.partials.edit', compact('futsal'));
     }    
-  
+    
+    public function getShowFutsal(){
+        $futsals = Futsal::all();
+        return view('layouts.partials.show', compact('futsals'));
+    
+    }
 }

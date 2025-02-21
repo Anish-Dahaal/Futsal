@@ -1,22 +1,22 @@
-/* Custom CSS for the form */
-.card .futsal-form-container {
+/* Show CSS for the form */
+
+.class .futsal-show-container {
     background: linear-gradient(145deg, #ffffff, #e6e6e6);
     border-radius: 25px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
     padding: 4rem;
     margin: 3rem auto;
-    max-width: 1050px;
+    width: 200%;
     transform: scale(1);
     transition: transform 0.3s ease-in-out;
     margin-left: 200%;
-   
 }
 
-.futsal-form-container:hover {
+.futsal-show-container:hover {
     transform: scale(1.02);
 }
 
-.futsal-form-header {
+.futsal-show-header {
     font-size: 3rem;
     font-weight: bold;
     color: #222;
@@ -37,7 +37,7 @@
     }
 }
 
-.futsal-form-label {
+.futsal-show-label {
     font-size: 1.4rem;
     font-weight: 600;
     color: #333;
@@ -100,16 +100,16 @@
 }
 
 @media (max-width: 768px) {
-    .futsal-form-container {
+    .futsal-show-container {
         padding: 3rem;
         max-width: 100%;
     }
 
-    .futsal-form-header {
+    .futsal-show-header {
         font-size: 2.5rem;
     }
 
-    .futsal-form-label {
+    .futsal-show-label {
         font-size: 1.2rem;
     }
 
@@ -122,4 +122,34 @@
         font-size: 1.2rem;
         padding: 1.2rem 2.5rem;
     }
+}
+
+/* Add this rule to adjust the table width */
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+/* Specific rule for futsal table */
+.futsal-table {
+    width: 100%;
+    max-width: 100%;
 }

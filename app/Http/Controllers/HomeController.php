@@ -142,7 +142,7 @@ public function getDeleteFutsal($id)
     // Delete the futsal record
     $futsal->delete();
 
-    return redirect()->route('billing')->with('status', 'Futsal deleted successfully!');
+    return redirect()->route('getShowFutsal')->with('status', 'Futsal deleted successfully!');
 }
 
 
