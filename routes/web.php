@@ -10,10 +10,11 @@ use App\Http\Controllers\MapController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminBookingController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SingleAdminController;
 
 
-Route::get('/gethome', [App\Http\Controllers\FutsalController::class, 'gethome'])->name('gethome');
-Route::get('/futsals', [App\Http\Controllers\FutsalController::class, 'futsals'])->name('futsals');
+Route::get('/gethome', [FutsalController::class, 'gethome'])->name('gethome');
+Route::get('/futsals', [FutsalController::class, 'futsals'])->name('futsals');
 
 
 Route::middleware(['frontUser'])->group(function () {
@@ -51,7 +52,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/bookings/{id}/update-status', [AdminBookingController::class, 'updateStatus'])->name('layouts.partials.tables.update-status');
     Route::delete('/bookings/{id}', [AdminBookingController::class, 'cancel'])->name('bookings.cancel');
 
-    
     // Route::get('/add/futsal',[App\Http\Controllers\HomeController::class, 'getAddFutsal'])->name('getAddFutsal');
     Route::get('/billing' ,[DashboardController::class, 'billing'])->name('billing');
     Route::post('/add/futsal',[App\Http\Controllers\HomeController::class, 'postAddFutsal'])->name('postAddFutsal');
@@ -71,3 +71,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile' ,[DashboardController::class, 'profile'])->name('profile');
     
 });
+
+Route::get('/admins/login', [SingleAdminController::class, 'showLogin'])->name('showLogin');
+Route::post('/admins/login', [SingleAdminController::class, 'postLogin'])->name('postLogin');
+Route::get('/admins/register', [SingleAdminController::class, 'showRegister'])->name('showRegister');
+Route::post('/admins/regester', [SingleAdminController::class, 'postRegister'])->name('postRegister');
+// Route::get('/singleadmin/{id}', [SingleAdminController::class, 'show'])->name('singleadmin.show');
+// Route::get('/singleadmin/{id}/edit', [SingleAdminController::class, 'edit'])->name('singleadmin.edit');
+// Route::put('/singleadmin/{id}', [SingleAdminController::class, 'update'])->name('singleadmin.update');
+// Route::delete('/singleadmin/{id}', [SingleAdminController::class, 'destroy'])->name('singleadmin.destroy');
+// Route::get('/singleadmin/create', [SingleAdminController::class, 'create'])->name('singleadmin.create');
+// Route::post('/singleadmin', [SingleAdminController::class, 'store'])->name('singleadmin.store');
