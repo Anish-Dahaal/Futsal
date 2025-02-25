@@ -57,6 +57,8 @@ class AuthController extends Controller
             'password' => 'required|min:6'
         ]);
 
+        // dd($request->all());
+
         $front_users = new FrontUser();
         $front_users->name = $request->name;
         $front_users->email = $request->email;

@@ -85,15 +85,6 @@
                                     </a>
                                 </li>
                             </ul>
-                            {{-- <li class="nav-item d-flex align-items-center">
-                                <a class="btn btn-round btn-sm mb-0 btn-outline-primary me-2" target="_blank">Try it</a>
-                            </li>
-                            <ul class="navbar-nav d-lg-block d-none">
-                                <li class="nav-item">
-                                    <a href="https://www.creative-tim.com/product/soft-ui-dashboard"
-                                        class="btn btn-sm btn-round mb-0 me-1 bg-gradient-dark">Free download</a>
-                                </li>
-                            </ul> --}}
                         </div>
                     </div>
                 </nav>
@@ -113,16 +104,16 @@
                                     <p class="mb-0">Enter your email and password to sign in</p>
                                 </div>
                                 <div class="card-body">
-                                    <form role="form">
+                                    <form role="form" action="{{ route('postLogin') }}" method="POST">@csrf
                                         <label>Email</label>
                                         <div class="mb-3">
                                             <input type="email" class="form-control" placeholder="Email"
-                                                aria-label="Email" aria-describedby="email-addon">
+                                                aria-label="Email" name="email" aria-describedby="email-addon">
                                         </div>
                                         <label>Password</label>
                                         <div class="mb-3">
-                                            <input type="email" class="form-control" placeholder="Password"
-                                                aria-label="Password" aria-describedby="password-addon">
+                                            <input type="password" class="form-control" placeholder="Password"
+                                                aria-label="Password" name="password" aria-describedby="password-addon">
                                         </div>
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" id="rememberMe"
@@ -130,7 +121,7 @@
                                             <label class="form-check-label" for="rememberMe">Remember me</label>
                                         </div>
                                         <div class="text-center">
-                                            <button type="button" class="btn bg-gradient-info w-100 mt-4 mb-0">Sign
+                                            <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Sign
                                                 in</button>
                                         </div>
                                     </form>

@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('futsals', function (Blueprint $table) {
             $table->id();
-            $table->integer('futsal_id');
+            $table->foreignId('admin_id')->constrained('admins')->onDelete('cascade');
             $table->string('futsal_name');
             $table->string('photo');
             $table->string('location');
             $table->integer('price_per_hour');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

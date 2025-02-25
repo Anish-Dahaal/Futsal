@@ -45,6 +45,11 @@ return [
             'driver' => 'session',
             'provider' => 'front_users',
         ],
+
+        'singleAdmins' =>  [
+            'driver' => 'session',
+            'provider' => 'single_admins',
+        ],
     ],
 
     /*
@@ -73,6 +78,11 @@ return [
         'front_users' =>  [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\FrontUser::class),
+        ],
+
+        'single_admins' =>  [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Admin::class),
         ],
 
         // 'users' => [
