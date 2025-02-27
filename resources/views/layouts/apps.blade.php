@@ -6,24 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futsal Management System</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <div class="logo">
-            <img src="{{ asset('images/logo.gif') }}" alt="Logo">
-            <span>Futsal System</span>
-        </div>
-        <nav>
-            <a href="{{ route('gethome') }}">Home</a>
-            <a href="{{ route('futsals') }}">Futsals</a>
-            <a href="{{ route('bookings.index') }}">Bookings</a>
-            <a href="{{ route('maps') }}">Maps</a>
-            @if (Auth::guard('frontUser')->check())
-                <a href="{{ route('user.logout') }}">Logout</a>
-            @else
-                <a href="{{ route('user.login') }}">Login/Register</a>
-            @endif
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="{{ route('gethome') }}">
+                    <img src="{{ asset('images/logo.gif') }}" alt="Logo" width="40" height="40"
+                        class="me-2">
+                    <span>Futsal System</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('gethome') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('futsals') }}">Futsals</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('bookings.index') }}">Bookings</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('maps') }}">Maps</a></li>
+                        @if (Auth::guard('frontUser')->check())
+                            <li class="nav-item"><a class="nav-link btn btn-danger text-white"
+                                    href="{{ route('user.logout') }}">Logout</a></li>
+                        @else
+                            <li class="nav-item"><a class="nav-link btn  text-white"
+                                    href="{{ route('user.login') }}">Login/Register</a></li>
+                        @endif
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
 
@@ -61,5 +75,6 @@
         });
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </html>

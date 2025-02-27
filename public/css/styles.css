@@ -1,57 +1,105 @@
-another code
-
 /* General Styles */
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
 }
-
-/* Header Styles */
-header {
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #ffffff !important;
+    top: 0;
+    width: 100%;
+    position: fixed !important;
+    z-index: 1000;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    margin-left: 50px; /* Adjust this value to move the logo more to the right */
-}
-
-
-.logo img {
-    height: 60px; /* Adjust as needed */
-    width: auto; /* Ensures aspect ratio is maintained */
-    max-width: 200px; /* Prevents it from being too large */
-    margin-right: 10px; /* Reduce spacing if needed */
-}
-
-.logo span {
-    font-size: 24px;
-    font-weight: bold;
-    white-space: nowrap; /* Ensures the name stays in one line */
-    color: #fff;
-}
-
-nav a {
-    color: #fff;
+.nav-link {
+    font-family: "Poppins-Medium" !important;
+    font-size: 28px !important;
+    color: #f4f0f0;
+    padding: 5px 0px;
+    margin: 0 1rem;
+    color: rgb(243, 235, 235) !important;
     text-decoration: none;
-    margin: 0 15px;
-    font-size: 16px;
-    transition: color 0.3s ease;
+    position: relative;
+    transition: color 0.3s;
 }
 
+.nav-link:hover {
+    color: rgb(237, 21, 35) !important;
+}
 
-nav a:hover {
-    color: #ff6347; /* Tomato color for hover effect */
+.nav-link::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: transparent;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-link:hover::before {
+    background-color: rgb(237, 21, 35);
+    transform: scaleX(1);
+}
+
+.navbar-brand {
+    font-family: "Pacifico";
+    font-size: 2.2rem !important;
+    color: rgb(221, 217, 218) !important;
+    padding-left: 0em !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-top: 0.5em;
+    margin-left: -70px;
+}
+/* Carosul */
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -30%);
+    color: #fff;
+    margin-left: 50%;
+    width: 100%;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 15rem !important;
+}
+
+/* about */
+
+.abt-body {
+    padding-top: 7em;
+}
+
+.bor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    border: 3px solid #ccc;
+    z-index: -1;
+}
+
+.abt-img-container {
+    position: relative;
+    transition: transform 0.2s ease-in-out;
+    overflow: hidden;
+}
+
+.abt-img-container img {
+    width: 100%;
+    height: 50% !important;
+}
+
+.abt-img-container img:hover {
+    transform: scale(1.1);
 }
 
 /* Slider Styles */
@@ -80,7 +128,6 @@ nav a:hover {
     background: rgba(0, 0, 0, 0.5); /* Adjust transparency */
 }
 
-
 /* Futsal Photos Section */
 .futsal-photos {
     display: flex;
@@ -102,7 +149,8 @@ nav a:hover {
 }
 
 /* Footer Styles */
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     display: flex;
@@ -184,7 +232,7 @@ form button:hover {
         margin: 0 auto;
         padding: 20px;
     }
-    
+
     .photo-container {
         display: flex;
         flex-direction: column;
@@ -194,14 +242,14 @@ form button:hover {
         max-width: 100%; /* Ensure it takes up the entire available space */
         margin-bottom: 40px;
     }
-    
+
     .futsal-photos img {
         width: 100%; /* Almost full screen width */
         height: 100%; /* Keeps aspect ratio */
         max-width: 1500px; /* Prevents excessive stretching on large screens */
         border-radius: 10px;
     }
-    
+
     .photo-caption {
         margin-top: 15px;
         font-size: 24px;
@@ -210,7 +258,6 @@ form button:hover {
         text-align: center;
     }
 }
-
 
 /* Maps Page */
 .maps-container {
@@ -443,7 +490,8 @@ table thead {
     color: #fff;
 }
 
-table th, table td {
+table th,
+table td {
     padding: 12px;
     text-align: center;
     border: 1px solid #ddd;
@@ -483,7 +531,8 @@ table tbody tr:hover {
         padding: 10px;
     }
 
-    table th, table td {
+    table th,
+    table td {
         padding: 8px;
     }
 
@@ -499,7 +548,8 @@ table tbody tr:hover {
         overflow-x: auto;
     }
 
-    table th, table td {
+    table th,
+    table td {
         white-space: nowrap;
     }
 }
