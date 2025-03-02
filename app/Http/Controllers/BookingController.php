@@ -15,7 +15,12 @@ class BookingController extends Controller
       
         $futsals = Futsal::all();
         // $bookings = Booking::with('futsal')->where('user_id', auth()->id())->get();
-        $bookings = Booking::where('user_id', Auth::guard('frontUser')->id())->latest()->get(); // Fetch bookings for the logged-in user
+        $bookings = Booking::with('futsal')->where('user_id', Auth::guard('frontUser')->id())->latest()->get(); // Fetch bookings for the logged-in user
+        $bookings = json_decode(json_encode($bookings), true);
+
+        // echo "<pre>"; print_r($bookings); die;
+
+        // dd($futsals);
         return view('bookings', compact('bookings', 'futsals'));
     }
 
@@ -35,12 +40,11 @@ class BookingController extends Controller
 
         // dd($data);
 
-        $futsal_name = Futsal::where('futsal_id', $request->futsal_id)->select('futsal_name')->first();
+       // $futsal_name = Futsal::where('futsal_id', $request->futsal_id)->select('futsal_name')->first();
         
        // dd($futsal_name->futsal_name);
 
         $booking = new Booking();
-        $booking->futsal_name = $futsal_name->futsal_name;
         $booking->booking_date = $request->booking_date;
         $booking->booking_time = $request->booking_time;
         $booking->duration = $request->duration;

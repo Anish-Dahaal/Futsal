@@ -21,4 +21,9 @@ class Booking extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function futsal()
+    {
+        return $this->belongsTo(Futsal::class);
+    }   
 }

@@ -78,8 +78,12 @@ Route::post('/admins/login', [SingleAdminController::class, 'postLogin'])->name(
 Route::get('/admins/register', [SingleAdminController::class, 'showRegister'])->name('showRegister');
 Route::post('/admins/register', [SingleAdminController::class, 'postRegister'])->name('postRegister');
 
+
+
 Route::middleware(['singleAdmins'])->group(function () { 
+    Route::get('/admins/addFutsal', [SingleAdminController::class, 'getAdd'])->name('getAdd');
+    Route::post('/admins/addFutsal',[SingleAdminController::class, 'postAdd'])->name('postAdd');
     Route::get('/books', [SingleAdminController::class, 'books'])->name('books');
     Route::post('/books/{id}/update-status', [SingleAdminController::class, 'updateStatus'])->name('single_futsal.book.update-status');
-    Route::delete('/bookings/{id}', [SingleAdminController::class, 'cancel'])->name('bookings.cancel');
+    Route::delete('/books/{id}', [SingleAdminController::class, 'cancel'])->name('books.cancel');
 });

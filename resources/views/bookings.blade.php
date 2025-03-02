@@ -56,28 +56,28 @@
                 <tbody>
                     @foreach ($bookings as $booking)
                         <tr>
-                            <td>{{ $booking->futsal_name }}</td>
-                            <td>{{ $booking->booking_date }}</td>
-                            <td>{{ $booking->booking_time }}</td>
-                            <td>{{ $booking->duration }} hours</td>
+                            <td>{{ $booking['futsal']['futsal_name'] }}</td>
+                            <td>{{ $booking['booking_date'] }}</td>
+                            <td>{{ $booking['booking_time'] }}</td>
+                            <td>{{ $booking['duration'] }} hours</td>
                             {{-- <td>{{ $booking->status }}</td> --}}
                             <td>
                                 <span
-                                    class="badge {{ $booking->status == 'pending'
+                                    class="badge {{ $booking['status'] == 'pending'
                                         ? 'bg-warning'
-                                        : ($booking->status == 'Booked'
+                                        : ($booking['status'] == 'Booked'
                                             ? 'bg-success'
-                                            : ($booking->status == 'Rejected'
+                                            : ($booking['status'] == 'Rejected'
                                                 ? 'bg-danger'
-                                                : ($booking->status == 'Canceled'
+                                                : ($booking['status'] == 'Canceled'
                                                     ? 'bg-secondary'
                                                     : 'bg-info'))) }}">
-                                    {{ $booking->status }}
+                                    {{ $booking['status'] }}
                                 </span>
                             </td>
                             <td>
-                                @if ($booking->status == 'pending' || $booking->status == 'Booked')
-                                    <form action="{{ route('bookings.cancel', $booking->id) }}" method="POST">
+                                @if ($booking['status'] == 'pending' || $booking['status'] == 'Booked')
+                                    <form action="{{ route('bookings.cancel', $booking['id']) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm"
@@ -89,8 +89,8 @@
                             </td>
 
                             {{-- <td>
-                                @if ($booking->status == 'pending' || $booking->status == 'booked')
-                                    <form action="{{ route('bookings.cancel', $booking->id) }}" method="POST">
+                                @if ($booking['status == 'pending' || $booking['status == 'booked')
+                                    <form action="{{ route('bookings.cancel', $booking['id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm"

@@ -40,9 +40,11 @@ class HomeController extends Controller
         'futsal_name' => 'required|string|max:255',
         'location' => 'required|string',
         'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'futsal_id' => 'required|string|unique:futsals',
+        // 'futsal_id' => 'required|string|unique:futsals',
         'price_per_hour' => 'required|numeric|min:0'
     ]);
+
+//    / dd($request->all());
 
     try {
         // Handle file upload
@@ -52,14 +54,23 @@ class HomeController extends Controller
         }
 
         // Create new futsal record with user_id
-        $futsal = Futsal::create([
-            'futsal_name' => $request->futsal_name,
-            'location' => $request->location,
-            'photo' => $photoPath,
-            'futsal_id' => $request->futsal_id,
-            'price_per_hour' => $request->price_per_hour,
-            'user_id' => auth()->id() // Add the authenticated user's ID
-        ]);
+        // $futsal = Futsal::create([
+        //     'futsal_name' => $request->futsal_name,
+        //     'location' => $request->location,
+        //     'photo' => $photoPath,
+        //     // 'futsal_id' => $request->futsal_id,
+        //     'price_per_hour' => $request->price_per_hour,
+        //     'user_id' => auth()->id() // Add the authenticated user's ID
+        // ]);
+
+        $futsal = new Futsal();
+
+        $futsal->admin_id = auth()->id();
+        $futsal->futsal_name = $request->futsal_name;
+        $futsal->location = $request->location;
+        $futsal->photo = $photoPath;
+        $futsal->price_per_hour = $request->price_per_hour;
+        $futsal->save();
 
         return redirect()->back()->with('status', 'Futsal added successfully!');
 

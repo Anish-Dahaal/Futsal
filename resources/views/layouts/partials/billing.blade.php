@@ -380,7 +380,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row mb-3">
+                                {{-- <div class="row mb-3">
                                     <label for="futsal_id"
                                         class="col-md-4 col-form-label text-md-end futsal-form-label">
                                         Futsal ID
@@ -396,7 +396,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="row mb-3">
                                     <label for="price_per_hour"

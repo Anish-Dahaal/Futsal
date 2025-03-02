@@ -9,6 +9,7 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Session;
 use App\Models\Booking;
 use App\Models\Futsal;
+use Illuminate\Support\Facades\Storage;
 
 
 class SingleAdminController extends Controller
@@ -17,6 +18,8 @@ class SingleAdminController extends Controller
     {
         return view('single_futsal.signIn');
     }
+
+
 
     public function postLogin(Request $request)
     {
@@ -29,21 +32,14 @@ class SingleAdminController extends Controller
         // {
         //     dd($request->all());
         // }
-
         $single_admins = Admin::where('email', $request->email)->first();
 
         if ($single_admins && Hash::check($request->password, $single_admins->password)) {
-
-
             Auth::guard('singleAdmins')->login($single_admins);
-
             // dd("success");
-
             return redirect()->route('books');
         }
-
         // dd("error");
-
         return redirect()->back()->with('error', 'Invalid email or password.');
     }
 
@@ -64,7 +60,6 @@ class SingleAdminController extends Controller
     //    {
     //     dd($request->all());
     //    }
-
         $single_admins = new Admin();
         $single_admins->owner_name = $request->name;
         $single_admins->owner_location = $request->location;
@@ -76,16 +71,79 @@ class SingleAdminController extends Controller
         return redirect()->route('showLogin')->with('success', 'Admin registered successfully.');
     }
 
+    public function getAdd()
+    {
+        return view('single_futsal.add_futsal');
+    }
+
+    
+
+    
+    public function postAdd(Request $request)
+    {
+    // Validate the form data
+    $request->validate([
+        'futsal_name' => 'required|string|max:255',
+        'location' => 'required|string',
+        'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'price_per_hour' => 'required|numeric|min:0'
+    ]);
+ 
+// dd($request->all());
+// dd(Auth::guard('singleAdmins')->user()->id);
+
+    try {
+        // Handle file upload
+        $photoPath = null;
+        if ($request->hasFile('photo')) {
+            $photoPath = $request->file('photo')->store('futsal_photos', 'public');
+        }
+       
+
+        
+        $futsal = new Futsal();
+
+        $futsal->admin_id = Auth::guard('singleAdmins')->user()->id;
+        $futsal->futsal_name = $request->futsal_name;
+        $futsal->location = $request->location;
+        $futsal->photo = $photoPath;
+        $futsal->price_per_hour = $request->price_per_hour;
+        $futsal->save();
+        
+        return redirect()->route('books')->back()->with('status', 'Futsal added successfully!');
+
+    } catch (\Exception $e) {
+        return redirect()->back()
+            ->withInput()
+            ->withErrors(['error' => 'Failed to add futsal. Please try again.']);
+    }
+    }
+
+
+
+
 
     public function books(){
         // $books = Booking::with('user')->latest()->get();
-        $futsal_id = Futsal::where('admin_id', Auth::guard('singleAdmins')->user()->id);
+
+        // dd(Auth::guard('singleAdmins')->user()->id);
+        $futsal_id = Futsal::where('admin_id', Auth::guard('singleAdmins')->user()->id)->first();
+
+        if($futsal_id){
+            
+             $books = Booking::with('futsal')->where('futsal_id', $futsal_id->id)->latest()->get();
+           
+        }else{
+            $books = [];
+        }
     
-        $books = Booking::where('futsal_id', $futsal_id)->latest()->get();
+       
         // $books = Booking::all();
         
         return view('single_futsal.books', compact('books'));
     }
+
+
 
     // Update booking status (Accept or Reject)
     public function updateStatus(Request $request, $id)
@@ -100,6 +158,10 @@ class SingleAdminController extends Controller
 
         return redirect()->back()->with('success', 'Booking status updated successfully.');
     }
+
+
+
+    // Cancel booking
     public function cancel($id)
     {
         $book = Booking::findOrFail($id);
