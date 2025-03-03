@@ -86,4 +86,6 @@ Route::middleware(['singleAdmins'])->group(function () {
     Route::get('/books', [SingleAdminController::class, 'books'])->name('books');
     Route::post('/books/{id}/update-status', [SingleAdminController::class, 'updateStatus'])->name('single_futsal.book.update-status');
     Route::delete('/books/{id}', [SingleAdminController::class, 'cancel'])->name('books.cancel');
+
+    Route::post('/admins/logout', [SingleAdminController::class, 'adminLogout'])->name('adminLogout');
 });

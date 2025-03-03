@@ -282,7 +282,7 @@
                                 </div>
 
                                 <!-- Futsal ID -->
-                                <div class="row mb-3">
+                                {{-- <div class="row mb-3">
                                     <label class="col-md-4 col-form-label text-md-end futsal-form-label">
                                         Futsal ID
                                     </label>
@@ -290,7 +290,7 @@
                                         <input type="text" class="form-control futsal-input" name="futsal_id"
                                             value="{{ old('futsal_id', $futsal->futsal_id) }}" required>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <!-- Price per Hour -->
                                 <div class="row mb-3">

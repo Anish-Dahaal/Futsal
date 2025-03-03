@@ -170,4 +170,10 @@ class SingleAdminController extends Controller
 
         return redirect()->back()->with('success', 'Booking rejected successfully.');
     }
+
+    public function adminLogout(Request $request)
+    {
+        Auth::guard('singleAdmins')->logout();
+        return redirect()->route('showLogin')->with('success', 'You have been logged out.');
+    }
 }

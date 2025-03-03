@@ -1,0 +1,155 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+.new-body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(445deg, #151515, #d4cbcb);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh;
+    margin: 19vh; */
+} */
+
+.registration-wrapper {
+    background: #fff;
+    padding: 30px;
+    /* margin-top: 12px; */
+    border-radius: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    animation: fadeIn 1s ease-in-out;;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.input-block {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: 0.3s ease-in-out;
+}
+
+input:focus {
+    border-color: #fb042d;
+    box-shadow: 0 0 8px rgba(208, 20, 51, 0.6);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button[type="submit"] {
+    background: #f9072f;
+}
+
+button[type="reset"] {
+    background: #c30606;
+    margin-top: 10px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Profile Picture Input */
+/* input[type="file"] {
+
+} */
+
+p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+a {
+    color: #f8173d;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* Form Container */
+.form-register {
+    max-width: 250vh;
+    margin: 50px auto;
+    margin-top: 10vh;
+    padding: 20px;
+    margin-left: -156px;
+    width: 200% !important;
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-register label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-register input[type="text"],
+.form-register input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-register button {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-register button:hover {
+    background-color: #f81515; /* Tomato color for hover effect */
+}

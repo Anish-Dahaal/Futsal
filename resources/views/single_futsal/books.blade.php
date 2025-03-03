@@ -182,13 +182,13 @@
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
-                            <a class="dropdown-item" style="color:rgb(186, 186, 195)" href="{{ route('logout') }}"
+                            <a class="dropdown-item" style="color:rgb(186, 186, 195)" href="{{ route('adminLogout') }}"
                                 onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            <form id="logout-form" action="{{ route('adminLogout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
 
