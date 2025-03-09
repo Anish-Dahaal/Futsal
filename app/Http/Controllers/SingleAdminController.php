@@ -27,7 +27,7 @@ class SingleAdminController extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
-
+        
         // if($request->isMethod('post'))
         // {
         //     dd($request->all());

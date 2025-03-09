@@ -4,7 +4,7 @@
 <div class="new-body">
 <div class="login-container d-flex justify-content-center align-items-center">
     <div class="login-box">
-        <h1>Login</h1>
+        <div><h1 style="font-family:Verdana, Geneva, Tahoma, sans-serif; font-size:200%; font-weight:bold; color:#1d0000;">Login</h1></div>
 
         @if(session('error'))
             <p class="login-error">{{ session('error') }}</p>

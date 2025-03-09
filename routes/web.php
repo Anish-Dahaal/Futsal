@@ -11,10 +11,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminBookingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SingleAdminController;
+use App\Http\Controllers\UserDashboardController;
 
 
-Route::get('/gethome', [FutsalController::class, 'gethome'])->name('gethome');
+Route::get('/', [FutsalController::class, 'gethome'])->name('gethome');
 Route::get('/futsals', [FutsalController::class, 'futsals'])->name('futsals');
+
+
 
 
 Route::middleware(['frontUser'])->group(function () {
@@ -25,6 +28,8 @@ Route::middleware(['frontUser'])->group(function () {
     Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
     Route::delete('/bookings/{id}', [BookingController::class, 'cancel'])->name('bookings.cancel');
     Route::get('/maps', [MapController::class, 'maps'])->name('maps');
+
+    Route::get('/user/dashboard',[UserDashboardController::class, 'userDashboard'])->name('user.dashboard');    
 });
 
 
@@ -43,7 +48,7 @@ Route::middleware('auth')->get('/user/home', [App\Http\Controllers\HomeControlle
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/adhome', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('home');
 
 Route::middleware(['auth'])->group(function () {

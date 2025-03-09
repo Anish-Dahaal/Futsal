@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
     <link rel="stylesheet" href="{{ asset('css/logins.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    @stack('css')
+
 </head>
 
 <body >
@@ -38,6 +40,43 @@
                                 <li class="nav-item"><a class="nav-link btn  text-white"
                                         href="{{ route('user.login') }}">Login/Register</a></li>
                             @endif
+
+                            @if(Auth::guard('frontUser')->check())
+
+                            <div class="nav-link">
+                                <div class="dropdown">
+                                    <button class="btn btn-light dropdown-toggle d-flex align-items-center" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="https://via.placeholder.com/40" alt="Profile" class="profile-img me-2">
+                                        <span>Profile Holder</span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                        <li><a class="dropdown-item"  href="{{ route('user.dashboard') }}">Dashboard</a></li>
+                                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                                        <li><a class="dropdown-item" href="#">Bookings</a></li>
+                                        
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            {{-- <div class="dropdown">
+                                <button  class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Your name
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                  <li><a class="dropdown-item active" href="{{ route('user.dashboard') }}">Dashboard</a></li>
+                                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                </ul>
+                              </div> --}}
+
+                            {{-- <li class="nav-item"><a class="nav-link" href="{{ route('user.dashboard') }}">
+                            <button type="button" class="btn btn-outline-light">Dashboard</button> --}}
+                        </a></li>
+                            @endif
+                            
                         </ul>
                     </div>
                 </div>
@@ -78,5 +117,5 @@
     });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+@stack('scripts')
 </html>
