@@ -77,7 +77,7 @@
                             </td>
                             <td>
                                 @if ($booking['status'] == 'pending' || $booking['status'] == 'Booked')
-                                    <form action="{{ route('bookings.cancel', $booking['id']) }}" method="POST">
+                                    <form action="{{ route('bookings.cancel', $booking['id']) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm"
@@ -88,16 +88,7 @@
                                 @endif
                             </td>
 
-                            {{-- <td>
-                                @if ($booking['status == 'pending' || $booking['status == 'booked')
-                                    <form action="{{ route('bookings.cancel', $booking['id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm"
-                                            style="color: black !important;">Cancel</button>
-                                    </form>
-                                @endif
-                            </td> --}}
+                            
                         </tr>
                     @endforeach
                 </tbody>
