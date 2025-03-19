@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('front_users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->bigInteger('contact');
+            $table->date('date_of_birth');
+            $table->string('address');
+            $table->string('user_photo');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -14,7 +14,7 @@
         :root {
             --primary-color: #4a6cf7;
             --primary-light: #e0e7ff;
-            --secondary-color: #6c757d;
+            --secondary-color: #0f151a;
             --light-gray: #f8f9fa;
             --medium-gray: #e9ecef;
             --dark-gray: #343a40;
@@ -99,7 +99,7 @@
         /* Sidebar */
         .sidebar {
             grid-area: sidebar;
-            background-color: var(--dark-gray);
+            background-color: #212529;
             color: var(--white);
             height: 100vh;
             box-shadow: var(--shadow);
@@ -364,18 +364,21 @@
         }
         
         .profile-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-color: var(--primary-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-        
+    width: 200px; /* Adjust the width of the avatar */
+    height: 200px; /* Adjust the height to make it a circle */
+    border-radius: 50%; /* This makes it a circle */
+    overflow: hidden; /* Hides any part of the image that exceeds the circle */
+    display: flex;
+    justify-content: center; /* Centers the image horizontally */
+    align-items: center; /* Centers the image vertically */
+}
+
+.profile-avatar img {
+    width: 100%; /* Makes sure the image stretches to fit the container */
+    height: 100%; /* Makes sure the image stretches to fit the container */
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+}
+
         .profile-info {
             flex: 1;
         }
@@ -480,12 +483,12 @@
             <div class="sidebar-menu">
                 <p class="menu-label">Main</p>
                 <ul class="menu-list">
-                    <li class="menu-item">
+                    {{-- <li class="menu-item">
                         <a href="#" class="menu-link" onclick="showView('dashboard-view')">
                             <i class="fas fa-home"></i>
                             <span>Dashboard</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="menu-item">
                         <a href="#" class="menu-link active" onclick="showView('bookings-view')">
                             <i class="fas fa-calendar-check"></i>
@@ -519,9 +522,9 @@
             </button>
             
             <div class="user-menu">
-                <img src="https://i.pravatar.cc/300" alt="User Avatar">
+                <img src="{{ Storage::url('/user_photos/'.Auth::guard('frontUser')->user()->user_photo) }}" alt="User Avatar">
                 <div class="user-info">
-                    <span class="user-name">John Doe</span>
+                    <span class="user-name">{{ Auth::guard('frontUser')->user()->name }}</span>
                     <span class="user-role">Premium Member</span>
                 </div>
             </div>
@@ -536,7 +539,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">All Bookings</h2>
-                        <button class="card-action">New Booking</button>
+                        <a href="{{route("bookings.index")}}"><button class="card-action">New Booking</button></a>
                     </div>
                     <div class="card-body">
                         <div class="table-container">
@@ -579,7 +582,7 @@
                                             @if ($booking['status'] == 'pending' || $booking['status'] == 'Booked')
                                                 <form action="{{ route('bookings.cancel', $booking['id']) }}" method="POST">
                                                     @csrf
-                                                    @method('DELETE')
+                                                    @method('POST')
                                                     <button type="submit" class="btn btn-danger btn-sm"
                                                         onclick="return confirm('Are you sure you want to cancel this booking?')">
                                                         Cancel
@@ -608,10 +611,12 @@
                     <div class="card-body">
                         <div class="profile-container">
                             <div class="profile-header">
-                                <div class="profile-avatar">JD</div>
+                                <div class="profile-avatar">
+                                    <img src="{{ Storage::url('/user_photos/'.Auth::guard('frontUser')->user()->user_photo) }}" alt="User Avatar" >
+                                </div>
                                 <div class="profile-info">
-                                    <h3 class="profile-name">John Doe</h3>
-                                    <p class="profile-email">john.doe@example.com</p>
+                                    <h3 class="profile-name">{{ Auth::guard('frontUser')->user()->name }}</h3>
+                                    <p class="profile-email">{{ Auth::guard('frontUser')->user()->email }}</p>
                                     
                                     <div class="profile-stats">
                                         <div class="stat-card">
@@ -634,21 +639,21 @@
                                 <div>
                                     <div class="detail-group">
                                         <p class="detail-label">Phone Number</p>
-                                        <p class="detail-value">+1 (555) 123-4567</p>
+                                        <p class="detail-value">{{ Auth::guard('frontUser')->user()->contact }}</p>
                                     </div>
                                     <div class="detail-group">
                                         <p class="detail-label">Location</p>
-                                        <p class="detail-value">New York, USA</p>
+                                        <p class="detail-value">{{ Auth::guard('frontUser')->user()->address }}</p>
                                     </div>
                                     <div class="detail-group">
-                                        <p class="detail-label">Preferred Position</p>
-                                        <p class="detail-value">Forward</p>
+                                        <p class="detail-label">Date of Birth</p>
+                                        <p class="detail-value">{{ Auth::guard('frontUser')->user()->date_of_birth }}</p>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="detail-group">
                                         <p class="detail-label">Member Since</p>
-                                        <p class="detail-value">March 15, 2022</p>
+                                        <p class="detail-value">{{ Auth::guard('frontUser')->user()->created_at->toDateString() }}</p>
                                     </div>
                                     <div class="detail-group">
                                         <p class="detail-label">Membership Plan</p>
@@ -666,7 +671,7 @@
             </div>
             
             <!-- Dashboard View -->
-            <div id="dashboard-view" class="view" style="display: none;">
+            {{-- <div id="dashboard-view" class="view" style="display: none;">
                 <h1 class="page-title">Dashboard</h1>
                 
                 <div class="card">
@@ -694,7 +699,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </main>
     </div>
     

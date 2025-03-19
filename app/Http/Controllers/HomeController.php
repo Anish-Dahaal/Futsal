@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Futsal;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
@@ -65,7 +66,7 @@ class HomeController extends Controller
 
         $futsal = new Futsal();
 
-        $futsal->admin_id = auth()->id();
+        $futsal->admin_id = Auth::id();
         $futsal->futsal_name = $request->futsal_name;
         $futsal->location = $request->location;
         $futsal->photo = $photoPath;

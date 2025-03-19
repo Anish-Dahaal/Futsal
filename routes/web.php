@@ -26,7 +26,7 @@ Route::middleware(['frontUser'])->group(function () {
     // Route::get('/bookings', [BookingController::class, 'showBookingForm'])->name('bookings.futsal');
    
     Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
-    Route::get('/bookings/{id}', [BookingController::class, 'cancel'])->name('bookings.cancel');
+    Route::post('/bookings/{id}', [BookingController::class, 'cancel'])->name('bookings.cancel');
     Route::get('/maps', [MapController::class, 'maps'])->name('maps');
 
     Route::get('/user/dashboard',[UserDashboardController::class, 'userDashboard'])->name('user.dashboard');    
@@ -37,7 +37,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('user/login', 'showLoginForm')->name('user.login');
     Route::post('user/login', 'login');
     Route::get('user/register', 'showRegistrationForm')->name('user.register');
-    Route::post('user/register', 'register');
+    Route::post('user/post-register', 'register')->name('user.postRegister');
     Route::get('user/logout', 'logout')->name('user.logout');
 });
 
@@ -91,6 +91,7 @@ Route::middleware(['singleAdmins'])->group(function () {
     Route::get('/books', [SingleAdminController::class, 'books'])->name('books');
     Route::post('/books/{id}/update-status', [SingleAdminController::class, 'updateStatus'])->name('single_futsal.book.update-status');
     Route::delete('/books/{id}', [SingleAdminController::class, 'cancel'])->name('books.cancel');
+    Route::get('/admins/profile', [SingleAdminController::class, 'adminProfile'])->name('adminProfile');
 
     Route::post('/admins/logout', [SingleAdminController::class, 'adminLogout'])->name('adminLogout');
 });

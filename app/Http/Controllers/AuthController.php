@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\FrontUser;
+use Exception;
 use Illuminate\Support\Facades\Session;
 
 
@@ -35,7 +36,7 @@ class AuthController extends Controller
             return redirect()->route('futsals');
 
 
-            return redirect('/futsals');
+            // 
         }
 
         return back()->with('error', 'Invalid credentials');
@@ -51,21 +52,71 @@ class AuthController extends Controller
     // Handle User Registration
     public function register(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6'
-        ]);
 
-        // dd($request->all());
+        if($request->isMethod('post')){
 
-        $front_users = new FrontUser();
-        $front_users->name = $request->name;
-        $front_users->email = $request->email;
-        $front_users->password = Hash::make($request->password);
-        $front_users->save();
+            $data = $request->all();
 
-        return redirect()->route('user.login')->with('success', 'Registration successful! Please login.');
+            //echo "<pre>"; print_r($data); die;
+
+
+            $request->validate([
+                'name' => 'required',
+                'contact'=> 'required',
+                'date_of_birth'=> 'required',
+                'address'=> 'string|required',
+                'user_photo'=> 'required',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|min:6'
+            ]);
+    
+            
+            $data = $request->all();
+    
+           //dd($data);
+        try{
+            if ($request->hasFile('user_photo')  && $request->file('user_photo')->isValid()) {
+    
+                //dd($data);
+                // $photoNeed = $request->file('user_photo')->store('user_photos', 'public');
+                $image = $request->file('user_photo');
+    
+                $imageEXtension = $image->getClientOriginalExtension();
+    
+                $imageName = time().'.'.$imageEXtension;
+    
+                //dd($imageName);
+    
+                $image->storeAs('user_photos', $imageName, 'public');
+        }else
+        {
+            $imageName = '';
+        }
+            // dd($request->all());
+            //echo "<pre>"; print_r($photoNeed); die;
+    
+            $front_users = new FrontUser();
+            $front_users->name = $request->name;
+            $front_users->contact = $request->contact;
+            $front_users->date_of_birth = $request->date_of_birth;
+            $front_users->user_photo = $imageName;
+            $front_users->address = $request->address;
+            $front_users->email = $request->email;
+            $front_users->password = Hash::make($request->password);
+            $front_users->save();
+    
+            return redirect()->route('user.login')->with('success', 'Registration successful! Please login.');
+        }
+        catch (Exception $e) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['error' => 'Failed to register. Please try again.']);
+        }
+
+        }
+        
+
+       
     }
 
     // Handle Logout

@@ -43,38 +43,25 @@
 
                             @if(Auth::guard('frontUser')->check())
 
-                            <div class="nav-link">
+                            <div class="nav-link"> 
                                 <div class="dropdown">
                                     <button class="btn btn-light dropdown-toggle d-flex align-items-center" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="https://via.placeholder.com/40" alt="Profile" class="profile-img me-2">
-                                        <span>Profile Holder</span>
+                                        <img src="{{ Storage::url('/user_photos/'.Auth::guard('frontUser')->user()->user_photo) }}" alt="Profile" class="profile-img me-2">
+                                        <span>{{ Auth::guard('frontUser')->user()->name }}
+                                            
+                                        </span>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                                        <li><a class="dropdown-item"  href="{{ route('user.dashboard') }}">Dashboard</a></li>
-                                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                                        <li><a class="dropdown-item" href="#">Bookings</a></li>
-                                        
+                                        {{-- <li><a class="dropdown-item"  href="{{ route('user.dashboard') }} " >Dashboard</a></li> --}}
+                                        <li><a class="dropdown-item" href="#" onclick="showView('profile-view')">Profiles</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">Bookings</a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+                                        <li><a class="dropdown-item text-danger" href="{{ route('user.logout') }}">Logout</a></li>
                                     </ul>
                                 </div>
                             </div>
-                            {{-- <div class="dropdown">
-                                <button  class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                  Your name
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-dark">
-                                  <li><a class="dropdown-item active" href="{{ route('user.dashboard') }}">Dashboard</a></li>
-                                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                  <li><hr class="dropdown-divider"></li>
-                                  <li><a class="dropdown-item" href="#">Separated link</a></li>
-                                </ul>
-                              </div> --}}
-
-                            {{-- <li class="nav-item"><a class="nav-link" href="{{ route('user.dashboard') }}">
-                            <button type="button" class="btn btn-outline-light">Dashboard</button> --}}
-                        </a></li>
+                            </a>
+                        </li>
                             @endif
                             
                         </ul>

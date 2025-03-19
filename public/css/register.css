@@ -153,3 +153,10 @@ a:hover {
 .form-register button:hover {
     background-color: #f81515; /* Tomato color for hover effect */
 }
+
+.profile-img {
+    width: 30px; /* Set a fixed width for the image */
+    height: 30px; /* Set a fixed height for the image */
+    object-fit: cover; /* Ensures the image is cropped properly */
+    border-radius: 50%; /* Makes the image round */
+}

@@ -127,8 +127,10 @@ class SingleAdminController extends Controller
         // $books = Booking::with('user')->latest()->get();
 
         // dd(Auth::guard('singleAdmins')->user()->id);
+        $futsal_name = Futsal::where('admin_id', Auth::guard('singleAdmins')->user()->id)->select('futsal_name')->first();
+        
+        
         $futsal_id = Futsal::where('admin_id', Auth::guard('singleAdmins')->user()->id)->first();
-
         if($futsal_id){
             
              $books = Booking::with('futsal')->where('futsal_id', $futsal_id->id)->latest()->get();
@@ -136,7 +138,8 @@ class SingleAdminController extends Controller
         }else{
             $books = [];
         }
-    
+        
+        
        
         // $books = Booking::all();
         
@@ -154,7 +157,7 @@ class SingleAdminController extends Controller
 
         $book = Booking::findOrFail($id);
         $book->status = $request->status;
-        $booking->save();
+        $book->save();
 
         return redirect()->back()->with('success', 'Booking status updated successfully.');
     }
@@ -175,5 +178,16 @@ class SingleAdminController extends Controller
     {
         Auth::guard('singleAdmins')->logout();
         return redirect()->route('showLogin')->with('success', 'You have been logged out.');
+    }
+
+
+
+    public function adminProfile()
+    {
+        $admin = Auth::guard('singleAdmins')->user();
+
+        $futsal_name = Futsal::where('admin_id', Auth::guard('singleAdmins')->user()->id)->select('futsal_name')->first();
+
+        return view('single_futsal.profile', compact('admin', 'futsal_name'));
     }
 }
