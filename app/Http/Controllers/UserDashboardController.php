@@ -26,4 +26,14 @@ class UserDashboardController extends Controller
         return view('dashboard', compact('bookings', 'futsals'));
        
     }
+
+    public function userProfile()
+    {
+        $futsals = Futsal::all();
+        // $bookings = Booking::with('futsal')->where('user_id', auth()->id())->get();
+        $bookings = Booking::with('futsal')->where('user_id', Auth::guard('frontUser')->id())->latest()->get(); // Fetch bookings for the logged-in user
+        $bookings = json_decode(json_encode($bookings), true);
+
+        return view('userProfile',compact('bookings','futsals'));
+    }
 }

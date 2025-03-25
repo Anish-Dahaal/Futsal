@@ -197,9 +197,9 @@
 
         <!-- End Navbar -->
         <div class="user-card" style="max-width: 700px; margin: auto; padding: 30px; background: #f8f9fa; border-radius: 15px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); text-align: center;">
-            <div class="user-photos" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 20px;">
+            <div class="user-photos" style="display: flex; justify-content: center; gap: 15px; marg in-bottom: 20px;">
                 <div class="photo-circle" style="width: 200px; height: 200px; border-radius: 50%; overflow: hidden; border: 4px solid #007bff;">
-                    <img src="img1.jpg" alt="photo1" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="{{ Storage::url($futsal_name->photo) }}" alt="photo1" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div class="photo-circle" style="width: 200px; height: 200px; border-radius: 50%; overflow: hidden; border: 4px solid #007bff;">
                     <img src="img2.jpg" alt="photo2" style="width: 100%; height: 100%; object-fit: cover;">

@@ -170,7 +170,7 @@
                         </li>
                         <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Bookings</li>
                     </ol>
-                    <h6 class="font-weight-bolder mb-0">{{ Auth::guard('singleAdmins')->user()->futsal_name }}</h6>
+                    <h6 class="font-weight-bolder mb-0">{{ $futsal_name->futsal_name }}</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">

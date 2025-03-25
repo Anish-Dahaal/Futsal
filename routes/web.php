@@ -28,6 +28,7 @@ Route::middleware(['frontUser'])->group(function () {
     Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
     Route::post('/bookings/{id}', [BookingController::class, 'cancel'])->name('bookings.cancel');
     Route::get('/maps', [MapController::class, 'maps'])->name('maps');
+    Route::get('/user/profile', [UserDashboardController::class, 'userProfile'])->name('user.profile');
 
     Route::get('/user/dashboard',[UserDashboardController::class, 'userDashboard'])->name('user.dashboard');    
 });
@@ -51,6 +52,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/adhome', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('home');
 
+
+
+
+// Admin Routes
 Route::middleware(['auth'])->group(function () {
 // Admin Booking Routes
     Route::get('/tables', [AdminBookingController::class, 'tables'])->name('tables');
@@ -76,6 +81,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile' ,[DashboardController::class, 'profile'])->name('profile');
     
 });
+
+
 
 
 Route::get('/admins/login', [SingleAdminController::class, 'showLogin'])->name('showLogin');

@@ -53,7 +53,7 @@
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                                         {{-- <li><a class="dropdown-item"  href="{{ route('user.dashboard') }} " >Dashboard</a></li> --}}
-                                        <li><a class="dropdown-item" href="#" onclick="showView('profile-view')">Profiles</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('user.profile') }}" >Profiles</a></li>
                                         <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">Bookings</a></li>
                                         <li><hr class="dropdown-divider"></li>
                                         <li><a class="dropdown-item text-danger" href="{{ route('user.logout') }}">Logout</a></li>

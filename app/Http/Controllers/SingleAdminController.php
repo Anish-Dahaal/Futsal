@@ -127,7 +127,6 @@ class SingleAdminController extends Controller
         // $books = Booking::with('user')->latest()->get();
 
         // dd(Auth::guard('singleAdmins')->user()->id);
-        $futsal_name = Futsal::where('admin_id', Auth::guard('singleAdmins')->user()->id)->select('futsal_name')->first();
         
         
         $futsal_id = Futsal::where('admin_id', Auth::guard('singleAdmins')->user()->id)->first();
@@ -139,11 +138,12 @@ class SingleAdminController extends Controller
             $books = [];
         }
         
+        $futsal_name = Futsal::where('admin_id', Auth::guard('singleAdmins')->user()->id)->select('futsal_name')->first();
         
        
         // $books = Booking::all();
         
-        return view('single_futsal.books', compact('books'));
+        return view('single_futsal.books', compact('books', 'futsal_name'));
     }
 
 
@@ -186,8 +186,9 @@ class SingleAdminController extends Controller
     {
         $admin = Auth::guard('singleAdmins')->user();
 
-        $futsal_name = Futsal::where('admin_id', Auth::guard('singleAdmins')->user()->id)->select('futsal_name')->first();
+        $futsal_name = Futsal::where('admin_id', Auth::guard('singleAdmins')->user()->id)->select('futsal_name','photo')->first();
 
+        // dd($futsal_name);
         return view('single_futsal.profile', compact('admin', 'futsal_name'));
     }
 }
