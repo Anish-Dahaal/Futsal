@@ -9,7 +9,7 @@ class AdminBookingController extends Controller
 {
     // Display all bookings for admin
     public function tables(){
-        $bookings = Booking::with('user')->latest()->get();
+        $bookings = Booking::with('frontUser')->latest()->get();
         // $bookings = json_decode(json_encode($bookings), true);
 
         // echo "<pre>"; print_r($bookings); echo "</pre>";

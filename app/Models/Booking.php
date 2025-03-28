@@ -17,9 +17,9 @@ class Booking extends Model
         'status'
     ];
 
-    public function user()
+    public function frontUser()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(FrontUser::class, 'user_id','id');
     }
 
     public function futsal()

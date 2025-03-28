@@ -170,7 +170,7 @@
                         </li>
                         <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Bookings</li>
                     </ol>
-                    <h6 class="font-weight-bolder mb-0">{{ $futsal_name->futsal_name }}</h6>
+                    <h6 class="font-weight-bolder mb-0">{{ $futsal_name->futsal_name ?? '' }}</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -229,7 +229,8 @@
                                                 Status</th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Actions</th>
+                                                Actions
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -281,6 +282,42 @@
                                                             @elseif($book->status == 'Rejected') bg-gradient-danger @endif">
                                                             {{ $book->status }}
                                                         </span>
+                                                        <!-- Button trigger modal -->
+                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                            More Details 
+                                                        </button>
+                                                        
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg"> <!-- Increased modal size -->
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Person's Information</h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="card p-3">
+                                                                            <div class="row align-items-center">
+                                                                                <div class="col-md-4 text-center">
+                                                                                    <img src="{{ asset('storage/user_photos/' . $book?->frontUser?->user_photo) }}" alt="Person's Photo" class="img-fluid rounded" style="width: 200px; height: 200px;">
+                                                                                </div>
+                                                                                <div class="col-md-8">
+                                                                                    <h4 class="card-title">{{$book?->frontUser?->name}}</h4>
+                                                                                    <p class="card-text"><strong>Phone:</strong> {{$book?->frontUser?->contact}}</p>
+                                                                                    <p class="card-text"><strong>Location:</strong> {{ $book?->frontUser?->address }}</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                
                                                     @endif
                                                 </td>
                                             </tr>

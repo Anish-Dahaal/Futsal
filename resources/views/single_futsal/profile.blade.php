@@ -168,7 +168,7 @@
                         </li>
                         <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Profile</li>
                     </ol>
-                    <h6 class="font-weight-bolder mb-0">{{ $futsal_name->futsal_name }}</h6>
+                    <h6 class="font-weight-bolder mb-0">{{ $futsal_name?->futsal_name }}</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -199,7 +199,7 @@
         <div class="user-card" style="max-width: 700px; margin: auto; padding: 30px; background: #f8f9fa; border-radius: 15px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); text-align: center;">
             <div class="user-photos" style="display: flex; justify-content: center; gap: 15px; marg in-bottom: 20px;">
                 <div class="photo-circle" style="width: 200px; height: 200px; border-radius: 50%; overflow: hidden; border: 4px solid #007bff;">
-                    <img src="{{ Storage::url($futsal_name->photo) }}" alt="photo1" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="{{ Storage::url($futsal_name?->photo) }}" alt="photo1" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div class="photo-circle" style="width: 200px; height: 200px; border-radius: 50%; overflow: hidden; border: 4px solid #007bff;">
                     <img src="img2.jpg" alt="photo2" style="width: 100%; height: 100%; object-fit: cover;">
@@ -208,13 +208,12 @@
                     <img src="img3.jpg" alt="photo3" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
             </div>
-            <h3 class="user-name" style="color: #333; font-weight: bold; margin-bottom: 10px; font-size: 22px;">Alec Thompson</h3>
-            <p class="user-role" style="color: #777; margin-bottom: 15px; font-size: 16px;">CEO / Co-Founder</p>
+            <h3 class="user-name" style="color: #333; font-weight: bold; margin-bottom: 10px; font-size: 22px;">{{ Auth::guard('singleAdmins')->user()->owner_name }}</h3>
+            <p class="user-role" style="color: #777; margin-bottom: 15px; font-size: 16px;">Founder / Owner</p>
             <div class="user-info" style="text-align: left; font-size: 16px; color: #444; line-height: 1.8;">
-                <p><strong>Address:</strong> 123 Main Street, Cityville</p>
-                <p><strong>Location:</strong> New York, USA</p>
-                <p><strong>Phone:</strong> +1 234 567 890</p>
-                <p><strong>Email:</strong> alec@example.com</p>
+                <p><strong>Location:</strong>{{ Auth::guard('singleAdmins')->user()->owner_location }}</p>
+                <p><strong>Phone:</strong> {{ Auth::guard('singleAdmins')->user()->phone_number }} </p>
+                <p><strong>Email:</strong> {{ Auth::guard('singleAdmins')->user()->email }}</p>
             </div>
         </div>
           {{-- <div class="container-fluid">

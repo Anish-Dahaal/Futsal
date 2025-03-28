@@ -77,9 +77,9 @@
                             </td>
                             <td>
                                 @if ($booking['status'] == 'pending' || $booking['status'] == 'Booked')
-                                    <form action="{{ route('bookings.cancel', $booking['id']) }}">
+                                    <form action="{{ route('bookings.cancel', $booking['id']) }}" method="post">
                                         @csrf
-                                        @method('DELETE')
+                                        {{-- @method('DELETE') --}}
                                         <button type="submit" class="btn btn-danger btn-sm"
                                             onclick="return confirm('Are you sure you want to cancel this booking?')">
                                             Cancel

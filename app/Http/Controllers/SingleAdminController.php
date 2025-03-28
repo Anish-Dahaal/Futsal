@@ -132,14 +132,15 @@ class SingleAdminController extends Controller
         $futsal_id = Futsal::where('admin_id', Auth::guard('singleAdmins')->user()->id)->first();
         if($futsal_id){
             
-             $books = Booking::with('futsal')->where('futsal_id', $futsal_id->id)->latest()->get();
+             $books = Booking::with('futsal','frontUser')->where('futsal_id', $futsal_id->id)->latest()->get();
            
         }else{
             $books = [];
         }
         
+        // dd($books);
         $futsal_name = Futsal::where('admin_id', Auth::guard('singleAdmins')->user()->id)->select('futsal_name')->first();
-        
+        // dd(Auth::guard('singleAdmins')->id());
        
         // $books = Booking::all();
         

@@ -16,4 +16,8 @@ class FrontUser extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function bookings(){
+        return $this->hasMany(Booking::class, 'user_id','id');
+    }
 }
